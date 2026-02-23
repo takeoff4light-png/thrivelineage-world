@@ -1,65 +1,116 @@
-import Image from "next/image";
+﻿import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <section
+        style={{
+          padding: "48px 0 18px",
+          display: "grid",
+          gap: 18,
+        }}
+      >
+        <p style={{ margin: 0, color: "var(--muted)", fontWeight: 600 }}>
+          World Entry
+        </p>
+
+        <h1 style={{ margin: 0, fontSize: 44, letterSpacing: -0.6, lineHeight: 1.05 }}>
+          ThriveLineage
+        </h1>
+
+        <p style={{ margin: 0, color: "var(--muted)", fontSize: 18, maxWidth: 72 + "ch" }}>
+          A sanctuary for thriving legacy — built through embodied wellbeing, honest story, and
+          trust you can feel in your nervous system.
+        </p>
+
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 6 }}>
+          <PrimaryButton href="/legacy/sonar">Enter Sonar</PrimaryButton>
+          <SecondaryButton href="/story">Read the Story</SecondaryButton>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section style={{ marginTop: 24 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 12,
+          }}
+        >
+          <Card title="Legacy">
+            What we inherit, what we heal, what we pass on — intentionally.
+          </Card>
+          <Card title="Wellbeing">
+            Breath, liquids, food, yin — embodied stability as a foundation.
+          </Card>
+          <Card title="Trust">
+            Clear words, clean choices, gentle power — no performance required.
+          </Card>
         </div>
-      </main>
+
+        <div style={{ marginTop: 14, color: "var(--muted)", fontSize: 14 }}>
+          Tip: Sonar is the living map. Everything else becomes a page when it’s ready.
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function Card({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        background: "var(--card)",
+        border: "1px solid var(--border)",
+        borderRadius: 14,
+        padding: 16,
+      }}
+    >
+      <div style={{ fontWeight: 800, marginBottom: 8 }}>{title}</div>
+      <div style={{ color: "var(--muted)", lineHeight: 1.5 }}>{children}</div>
     </div>
+  );
+}
+
+function PrimaryButton({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "10px 14px",
+        borderRadius: 12,
+        background: "var(--primary)",
+        color: "white",
+        textDecoration: "none",
+        fontWeight: 700,
+      }}
+    >
+      {children} <span aria-hidden="true">→</span>
+    </Link>
+  );
+}
+
+function SecondaryButton({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "10px 14px",
+        borderRadius: 12,
+        background: "transparent",
+        color: "var(--primary)",
+        border: "1px solid var(--border)",
+        textDecoration: "none",
+        fontWeight: 700,
+      }}
+    >
+      {children}
+    </Link>
   );
 }
