@@ -1,33 +1,18 @@
 ﻿import Link from "next/link";
+import { LogoMark } from "@/components/brand/LogoMark";
 
 export function Header() {
   return (
-    <header
-      style={{
-        borderBottom: "1px solid var(--border)",
-        background: "var(--card)",
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          paddingTop: 16,
-          paddingBottom: 16,
-        }}
-      >
-        <Link href="/" style={{ fontWeight: 700, letterSpacing: 0.2 }}>
-          ThriveLineage
+    <header className="w-full border-b border-black/5 bg-white/60 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <Link href="/" className="flex items-center gap-2 text-zinc-900">
+          <LogoMark size={26} className="text-zinc-900/90" />
+          <span className="text-sm font-semibold tracking-tight text-zinc-900/90">
+            ThriveLineage
+          </span>
         </Link>
 
-        <nav style={{ display: "flex", gap: 16, color: "var(--muted)" }}>
-          <Link href="/story">Story</Link>
-          <Link href="/values">Values</Link>
-          <Link href="/sanctuary">Sanctuary</Link>
-          <Link href="/wellbeing">Wellbeing</Link>
-        </nav>
+        {/* nav */}
       </div>
     </header>
   );
