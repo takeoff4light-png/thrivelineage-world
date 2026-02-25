@@ -1,20 +1,22 @@
-﻿"use client";
+﻿'use client';
 
-import mermaid from "mermaid";
-import { useEffect, useMemo, useRef } from "react";
+import mermaid from 'mermaid';
+import { useEffect, useId, useRef } from 'react';
 
 export function Mermaid({ chart }: { chart: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const id = useMemo(() => `mmd-${Math.random().toString(16).slice(2)}`, []);
+
+  // React-safe stable id (no randomness during render)
+  const reactId = useId();
+  const id = `mmd-${reactId.replace(/:/g, '_')}`;
 
   useEffect(() => {
     mermaid.initialize({
       startOnLoad: false,
-      securityLevel: "strict",
-      theme: "base",
+      securityLevel: 'strict',
+      theme: 'base',
       themeVariables: {
-        fontFamily:
-          "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
       },
     });
 

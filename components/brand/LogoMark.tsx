@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
 export function LogoMark({
   size = 24,
-  title = "ThriveLineage",
+  title = 'ThriveLineage',
   className,
 }: {
   size?: number;
@@ -21,12 +21,7 @@ export function LogoMark({
     >
       <circle cx="64" cy="56" r="28" stroke="currentColor" strokeWidth="10" />
       <circle cx="64" cy="56" r="8" fill="currentColor" />
-      <path
-        d="M36 104h56"
-        stroke="currentColor"
-        strokeWidth="10"
-        strokeLinecap="round"
-      />
+      <path d="M36 104h56" stroke="currentColor" strokeWidth="10" strokeLinecap="round" />
     </svg>
   );
 }

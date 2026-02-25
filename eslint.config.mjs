@@ -1,18 +1,29 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+﻿import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import next from '@next/eslint-plugin-next';
+import prettier from 'eslint-config-prettier';
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-]);
+export default [
+  // Ignore generated / vendor output
+  {
+    ignores: ['node_modules/**', '.next/**', 'out/**', 'dist/**', 'coverage/**'],
+  },
 
-export default eslintConfig;
+  // Base JS rules
+  js.configs.recommended,
+
+  // TypeScript rules (no type-checking required; fast + reliable baseline)
+  ...tseslint.configs.recommended,
+
+  // Next.js rules
+  {
+    plugins: { '@next/next': next },
+    rules: {
+      ...next.configs.recommended.rules,
+      ...next.configs['core-web-vitals'].rules,
+    },
+  },
+
+  // Keep this LAST to turn off formatting-related ESLint rules
+  prettier,
+];

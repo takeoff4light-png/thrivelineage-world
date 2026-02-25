@@ -6,4 +6,5 @@
 - Max line length target: ~65–75 characters
 
 Notes:
+
 - We can add a distinctive heading font later if you want more "ritual / sanctuary" tone.

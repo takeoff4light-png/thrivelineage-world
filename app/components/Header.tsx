@@ -1,5 +1,5 @@
-﻿import Link from "next/link";
-import { LogoMark } from "@/components/brand/LogoMark";
+﻿import Link from 'next/link';
+import { LogoMark } from '@/components/brand/LogoMark';
 
 export function Header() {
   return (

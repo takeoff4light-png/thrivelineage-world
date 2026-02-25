@@ -1,4 +1,4 @@
-﻿import { Mermaid } from "@/app/components/Mermaid";
+﻿import { Mermaid } from '@/app/components/Mermaid';
 
 const chart = `mindmap
   root((ThriveLineage.world))
@@ -22,7 +22,7 @@ const chart = `mindmap
 
 export default function SonarPage() {
   return (
-    <main style={{ padding: 24, maxWidth: 1100, margin: "0 auto" }}>
+    <main style={{ padding: 24, maxWidth: 1100, margin: '0 auto' }}>
       <h1 style={{ marginBottom: 8 }}>ThriveLegacy Sonar</h1>
       <p style={{ marginTop: 0, opacity: 0.8 }}>
         A living map of lineage → legacy → wellness → trust.
