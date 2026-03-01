@@ -1,0 +1,49 @@
+﻿/* styles/brand-tokens.css */
+
+/* ---------- ThriveLegacy (soft / keepsake) ---------- */
+:root[data-brand="legacy"]{
+  --bg: #FBFAF6;
+  --surface: #FFFFFF;
+  --surface-2: #F4F1EA;
+  --border: #E2DDD1;
+
+  --text: #1E2320;
+  --muted: #5B645E;
+
+  --accent: #5F7A63;
+  --accent-700: #46624B;
+  --accent-50: #EEF3EF;
+
+  --bronze: #A07C4E;
+  --bronze-50: #F4EEE6;
+
+  --success: #2F7D4A;
+  --warning: #9A6B2B;
+  --danger: #A13A3A;
+
+  --focus: rgba(95, 122, 99, 0.35);
+}
+
+/* ---------- ThriveLineage (clear / signal) ---------- */
+:root[data-brand="lineage"]{
+  --bg: #F7F9FC;
+  --surface: #FFFFFF;
+  --surface-2: #F0F4FA;
+  --border: #D7DEE9;
+
+  --text: #0F172A;
+  --muted: #475569;
+
+  --accent: #0F766E;
+  --accent-700: #115E59;
+  --accent-50: #E6F6F4;
+
+  --spark: #4F46E5;
+  --spark-50: #EEF2FF;
+
+  --success: #15803D;
+  --warning: #B45309;
+  --danger: #B91C1C;
+
+  --focus: rgba(15, 118, 110, 0.32);
+}

@@ -1,114 +1,48 @@
-﻿import Link from 'next/link';
+﻿// app/page.tsx
+import Link from "next/link";
+import BrandToggle from "./components/BrandToggle";
+import { getPrefs } from "../src/lib/prefs";
 
-export default function HomePage() {
+export default async function Page() {
+  const prefs = await getPrefs();
+
   return (
-    <main>
-      <section
-        style={{
-          padding: '48px 0 18px',
-          display: 'grid',
-          gap: 18,
-        }}
-      >
-        <p style={{ margin: 0, color: 'var(--muted)', fontWeight: 600 }}>World Entry</p>
+    <main className="container" style={{ display: "grid", gap: 16 }}>
+      <h1 className="h1">ThriveLineage.world</h1>
 
-        <h1 style={{ margin: 0, fontSize: 44, letterSpacing: -0.6, lineHeight: 1.05 }}>
-          ThriveLineage
-        </h1>
+      <p className="p muted">
+        Default brand is lineage unless route or cookie says otherwise.
+      </p>
 
-        <p style={{ margin: 0, color: 'var(--muted)', fontSize: 18, maxWidth: 72 + 'ch' }}>
-          A sanctuary for thriving legacy — built through embodied wellbeing, honest story, and
-          trust you can feel in your nervous system.
+      <p className="p">
+        Calm Mode: <strong>{prefs.calm}</strong> · Daily Delight:{" "}
+        <strong>{prefs.popups}</strong> · Sound: <strong>{prefs.sound}</strong>
+      </p>
+
+      <p className="p" style={{ marginTop: -8 }}>
+        <Link className="brandLink" href="/settings">
+          Preferences
+        </Link>
+      </p>
+
+      <BrandToggle />
+
+      <section className="card">
+        <p className="p" style={{ marginBottom: 8 }}>
+          <strong>Sanity check:</strong> Buttons and links should match the
+          active brand colors.
         </p>
 
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 6 }}>
-          <PrimaryButton href="/legacy/sonar">Enter Sonar</PrimaryButton>
-          <SecondaryButton href="/story">Read the Story</SecondaryButton>
-        </div>
-      </section>
-
-      <section style={{ marginTop: 24 }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: 12,
-          }}
-        >
-          <Card title="Legacy">
-            What we inherit, what we heal, what we pass on — intentionally.
-          </Card>
-          <Card title="Wellbeing">
-            Breath, liquids, food, yin — embodied stability as a foundation.
-          </Card>
-          <Card title="Trust">
-            Clear words, clean choices, gentle power — no performance required.
-          </Card>
-        </div>
-
-        <div style={{ marginTop: 14, color: 'var(--muted)', fontSize: 14 }}>
-          Tip: Sonar is the living map. Everything else becomes a page when it’s ready.
-        </div>
+        <p className="p" style={{ marginBottom: 0 }}>
+          <Link className="brandLink" href="/legacy">
+            Go to /legacy
+          </Link>{" "}
+          {" · "}
+          <Link className="brandLink" href="/lineage">
+            Go to /lineage
+          </Link>
+        </p>
       </section>
     </main>
-  );
-}
-
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div
-      style={{
-        background: 'var(--card)',
-        border: '1px solid var(--border)',
-        borderRadius: 14,
-        padding: 16,
-      }}
-    >
-      <div style={{ fontWeight: 800, marginBottom: 8 }}>{title}</div>
-      <div style={{ color: 'var(--muted)', lineHeight: 1.5 }}>{children}</div>
-    </div>
-  );
-}
-
-function PrimaryButton({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link
-      href={href}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 8,
-        padding: '10px 14px',
-        borderRadius: 12,
-        background: 'var(--primary)',
-        color: 'white',
-        textDecoration: 'none',
-        fontWeight: 700,
-      }}
-    >
-      {children} <span aria-hidden="true">→</span>
-    </Link>
-  );
-}
-
-function SecondaryButton({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link
-      href={href}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 8,
-        padding: '10px 14px',
-        borderRadius: 12,
-        background: 'transparent',
-        color: 'var(--primary)',
-        border: '1px solid var(--border)',
-        textDecoration: 'none',
-        fontWeight: 700,
-      }}
-    >
-      {children}
-    </Link>
   );
 }

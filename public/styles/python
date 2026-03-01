@@ -1,0 +1,6 @@
+/styles
+  brand-tokens.css        ← ONLY CSS variables (design tokens)
+  component-mappings.css  ← Buttons, links, cards, focus, etc.
+/app
+  globals.css             ← imports + any global base styles
+

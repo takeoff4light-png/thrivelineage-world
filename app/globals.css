@@ -1,55 +1,201 @@
+﻿/* app/globals.css
+   Frictionless theming: semantic tokens + data-brand switch
+   Default brand = lineage (set in :root)
+*/
+
+/* -------------------- Design tokens (default = lineage) -------------------- */
 :root {
-  --bg: #f7f7fb;
-  --text: #0b1220;
-  --muted: #5b6475;
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
 
-  --primary: #243b80;
-  --accent: #f2c14e;
+  /* Surfaces + text */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --fg: #0f172a; /* slate-900 */
+  --muted: #475569; /* slate-600 */
+  --border: #e2e8f0; /* slate-200 */
 
-  --card: #ffffff;
-  --border: #e6e8ef;
+  /* Brand tokens (Lineage default) */
+  --brand: #1d4ed8; /* blue-700 */
+  --brand-strong: #1e40af; /* blue-800 */
+  --brand-soft: #eff6ff; /* blue-50 */
 
-  --background: var(--bg);
-  --foreground: var(--text);
+  /* Interactions */
+  --radius: 10px;
+  --ring: 0 0 0 4px rgba(29, 78, 216, 0.18);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b1220;
-    --text: #f7f7fb;
-    --muted: #a4adbf;
+/* -------------------- Brand overrides (html OR wrapper div) -------------------- */
+html[data-brand="legacy"],
+[data-brand="legacy"] {
+  --brand: #9a3412; /* orange-800 */
+  --brand-strong: #7c2d12; /* orange-900 */
+  --brand-soft: #fff7ed; /* orange-50 */
+  --ring: 0 0 0 4px rgba(154, 52, 18, 0.18);
+}
 
-    --card: #101a33;
-    --border: #223055;
+html[data-brand="lineage"],
+[data-brand="lineage"] {
+  /* Optional explicit lineage block; keeps behavior clear and future-proof. */
+  --brand: #1d4ed8;
+  --brand-strong: #1e40af;
+  --brand-soft: #eff6ff;
+  --ring: 0 0 0 4px rgba(29, 78, 216, 0.18);
+}
 
-    --background: var(--bg);
-    --foreground: var(--text);
+/* -------------------- Calm Mode (choice-first, low stimulation) -------------------- */
+html[data-calm="on"] {
+  scroll-behavior: auto;
+}
+
+html[data-calm="on"] *,
+html[data-calm="on"] *::before,
+html[data-calm="on"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* Respect OS-level reduced motion regardless of Calm Mode */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-* {
+/* -------------------- Base reset-ish -------------------- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html,
 body {
-  padding: 0;
-  margin: 0;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--fg);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
+/* -------------------- Layout + type helpers -------------------- */
 .container {
-  max-width: 1100px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 40px 20px;
+}
+
+.h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  margin: 0 0 8px;
+  color: var(--fg);
+}
+
+.p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+/* -------------------- Branded components (token-driven) -------------------- */
+.brandLink {
+  color: var(--brand-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.brandLink:hover {
+  color: var(--brand);
+}
+
+.brandLink:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: 6px;
+}
+
+.pillRow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.button {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.button:hover {
+  background: var(--brand-strong);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.buttonSecondary {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.buttonSecondary:hover {
+  background: color-mix(in srgb, var(--brand-soft) 80%, white);
+}
+input, select {
+  font: inherit;
+}
+
+select, input[type="text"], input:not([type]) {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--surface);
+  color: var(--fg);
+}
+
+select:focus-visible,
+input:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
 }

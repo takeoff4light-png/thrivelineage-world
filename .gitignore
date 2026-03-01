@@ -43,3 +43,10 @@ next-env.d.ts
 .next
 *.bak
 
+
+# clerk configuration (can include secrets)
+/.clerk/
+.env
+.env.*
+keyless.json
+telemetry.json
