@@ -11,8 +11,9 @@
 - Rollover Flag (Y/N):
 
 ## Placement Proof
-- Featured URL or Site Path:
-- Archived Proof (optional — screenshot filename / storage path):
+- Featured surface location (page/section/module name):
+- Live URL or Site Path:
+- Archived Proof (screenshot filename / storage path):
 
 ## Notes
--
+- Guaranteed Exposure = placement only on the ThriveLineage.world Featured surface. No outcomes/results are promised.
