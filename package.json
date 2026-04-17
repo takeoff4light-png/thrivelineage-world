@@ -14,9 +14,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.38.2",
+    "mermaid": "^11.12.3",
     "next": "^16.1.6",
+    "next-intl": "^4.8.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.1",

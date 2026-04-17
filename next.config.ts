@@ -1,7 +1,11 @@
-import type { NextConfig } from 'next';
+﻿import type {NextConfig} from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+// Explicit path = predictable resolution (fixes "Could not locate request configuration module")
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // keep your existing config options here
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

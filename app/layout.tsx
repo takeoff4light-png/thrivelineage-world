@@ -2,9 +2,12 @@
 import "./globals.css";
 import type { ReactNode } from "react";
 import { cookies, headers } from "next/headers";
+import { getLocale } from "next-intl/server";
 import { normalizeBrand } from "../src/lib/brand";
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  const locale = await getLocale();
+
   const h = await headers();
   const c = await cookies();
 
@@ -18,7 +21,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const calm = (c.get("pref_calm")?.value ?? "off") === "on" ? "on" : "off";
 
   return (
-    <html lang="en" data-brand={brand} data-calm={calm}>
+    <html lang={locale} data-brand={brand} data-calm={calm}>
       <body>{children}</body>
     </html>
   );

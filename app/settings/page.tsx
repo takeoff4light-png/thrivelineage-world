@@ -1,9 +1,9 @@
-// app/settings/page.tsx
+﻿// app/settings/page.tsx
 import { getPrefs } from "../../src/lib/prefs";
 import { savePrefs } from "./actions";
 
-export default function SettingsPage() {
-  const prefs = getPrefs();
+export default async function SettingsPage() {
+  const prefs = await getPrefs();
 
   return (
     <main className="container">
